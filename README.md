@@ -467,10 +467,3 @@ http://localhost:4200
 </ol>
 
 <hr>
-
-<h2>👨‍💻 Autor</h2>
-
-<p>
-  Desenvolvido como parte de um teste técnico para a posição de
-  <strong>Desenvolvedor(a) Pleno Full-Stack — C# e Angular</strong>.
-</p>
