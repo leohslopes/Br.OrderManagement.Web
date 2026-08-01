@@ -1,0 +1,33 @@
+*{
+    box-sizing:border-box;
+}
+
+body{
+
+    margin:0;
+
+    background:#f3f4f6;
+
+    font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+}
+
+.layout{
+
+    display:flex;
+}
+
+.content{
+
+    margin-left:240px;
+
+    width:calc(100% - 240px);
+
+    min-height:100vh;
+
+    background:#f3f4f6;
+}
+
+.page{
+
+    padding:30px;
+}

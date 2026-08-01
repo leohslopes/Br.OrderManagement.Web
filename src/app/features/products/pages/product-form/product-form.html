@@ -1,0 +1,177 @@
+<div
+  class="modal fade show"
+  tabindex="-1"
+  [style.display]="visible ? 'block' : 'none'"
+  [class.d-block]="visible"
+  *ngIf="visible">
+
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+
+    <div class="modal-content shadow">
+
+      <div class="modal-header bg-primary text-white">
+
+        <h5 class="modal-title">
+
+          <i class="bi bi-box-seam me-2"></i>
+
+          {{ product.id ? 'Editar Produto' : 'Novo Produto' }}
+
+        </h5>
+
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          (click)="cancel()">
+        </button>
+
+      </div>
+
+      <div class="modal-body">
+
+        <form>
+
+          <div class="row">
+
+            <!-- Imagem -->
+
+            <div class="col-md-4 text-center">
+
+              <div class="image-container">
+
+                <img
+                  *ngIf="previewImage"
+                  [src]="previewImage"
+                  class="img-fluid rounded border">
+
+                <div
+                  *ngIf="!previewImage"
+                  class="image-placeholder">
+
+                  <i class="bi bi-image fs-1"></i>
+
+                </div>
+
+              </div>
+
+              <input
+                type="file"
+                class="form-control mt-3"
+                accept="image/*"
+                (change)="onFileSelected($event)">
+
+            </div>
+
+            <!-- Dados -->
+
+            <div class="col-md-8">
+
+              <div class="mb-3">
+
+                <label class="form-label">
+
+                  Nome
+
+                </label>
+
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="product.name"
+                  name="name">
+
+              </div>
+
+              <div class="mb-3">
+
+                <label class="form-label">
+
+                  Descrição
+
+                </label>
+
+                <textarea
+                  rows="4"
+                  class="form-control"
+                  [(ngModel)]="product.description"
+                  name="description">
+                </textarea>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col">
+
+                  <label class="form-label">
+
+                    Preço
+
+                  </label>
+
+                  <input
+                    type="number"
+                    class="form-control"
+                    [(ngModel)]="product.price"
+                    name="price">
+
+                </div>
+
+                <div class="col">
+
+                  <label class="form-label">
+
+                    Estoque
+
+                  </label>
+
+                  <input
+                    type="number"
+                    class="form-control"
+                    [(ngModel)]="product.stockQuantity"
+                    name="stockQuantity">
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button
+          class="btn btn-secondary"
+          (click)="cancel()">
+
+          Cancelar
+
+        </button>
+
+        <button
+          class="btn btn-primary"
+          (click)="save()">
+
+          <i class="bi bi-check-circle me-2"></i>
+
+          Salvar
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div
+  class="modal-backdrop fade show"
+  *ngIf="visible">
+</div>

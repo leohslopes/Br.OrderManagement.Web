@@ -1,0 +1,41 @@
+.card {
+    border-radius: 10px;
+}
+
+.card-header {
+    border-radius: 10px 10px 0 0;
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.badge {
+    font-size: .85rem;
+    padding: .55rem .8rem;
+}
+
+.btn {
+    min-width: 38px;
+}
+
+.btn i {
+    font-size: 1rem;
+}
+
+.text-success {
+    font-weight: 600;
+}
+
+.card-body {
+    overflow-x: auto;
+}
+
+.table {
+    margin-bottom: 0;
+}

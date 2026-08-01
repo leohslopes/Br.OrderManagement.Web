@@ -1,0 +1,139 @@
+<div class="card shadow-sm border-0">
+    <div class="card-header bg-primary text-white">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">
+                <i class="bi bi-box"></i>
+                Produtos
+            </h4>
+
+            <button class="btn btn-light" (click)="newProduct()">
+                <i class="bi bi-plus-circle"></i>
+                Novo Produto
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Imagem</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                    <th>Estoque</th>
+                    <th width="170">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products; trackBy: trackById">
+                    <td>
+                        <ng-container *ngIf="product.imageBase64; else noImage">
+                            <img
+                                [src]="'data:image/png;base64,' + product.imageBase64"
+                                width="60"
+                                class="rounded border">
+                        </ng-container>
+                        <ng-template #noImage>
+                            <div
+                                class="bg-light rounded d-flex align-items-center justify-content-center"
+                                style="width:60px;height:60px">
+                                <i class="bi bi-image text-secondary fs-4"></i>
+                            </div>
+                        </ng-template>
+                    </td>
+                    <td>
+                        <strong>{{ product.name }}</strong>
+                    </td>
+                    <td>
+                        {{ product.description }}
+                    </td>
+                    <td>
+                        {{ product.price | currency:'BRL' }}
+                    </td>
+                    <td>
+                        <span
+                            class="badge"
+                            [class.bg-success]="product.stockQuantity > 0"
+                            [class.bg-danger]="product.stockQuantity == 0">
+
+                            {{ product.stockQuantity }}
+
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn btn-outline-primary btn-sm me-2" (click)="edit(product)">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm"  (click)="delete(product)">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="products.length === 0">
+                    <td colspan="6" class="text-center text-muted">
+                        Nenhum produto encontrado.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<app-product-form
+    *ngIf="showModal"
+    [visible]="showModal"
+    [product]="selectedProduct"
+    (close)="closeModal()"
+    (saved)="loadProducts()">
+</app-product-form>
+
+<div *ngIf="showDeleteModal"
+    class="modal fade show d-block"
+    tabindex="-1"
+    role="dialog"
+    aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow border-0">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    Excluir Produto
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    aria-label="Fechar"
+                    (click)="cancelDelete()">
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-0">
+                    Deseja realmente excluir o produto
+                    <strong>{{ productToDelete?.name }}</strong>?
+                </p>
+                <small class="text-muted">
+                    Esta operação não poderá ser desfeita.
+                </small>
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="cancelDelete()">
+                    Cancelar
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="confirmDelete()">
+                    <i class="bi bi-trash me-2"></i>
+                    Excluir
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div
+    *ngIf="showDeleteModal"
+    class="modal-backdrop fade show">
+</div>

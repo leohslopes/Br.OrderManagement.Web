@@ -1,0 +1,45 @@
+.card {
+    border-radius: 10px;
+}
+
+.card-header {
+    border-radius: 10px 10px 0 0;
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+}
+
+.input-group {
+    width: 120px;
+}
+
+.input-group .form-control {
+    font-weight: 600;
+}
+
+h2 {
+    font-weight: 700;
+}
+
+.btn-success {
+    min-width: 180px;
+}
+
+.btn-secondary {
+    min-width: 120px;
+}
+
+.form-select,
+.form-control {
+    min-height: 42px;
+}
+
+.table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.card-footer {
+    background: #fff;
+}

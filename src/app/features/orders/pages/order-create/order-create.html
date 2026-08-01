@@ -1,0 +1,164 @@
+<div class="card shadow-sm border-0">
+    <div class="card-header bg-primary text-white">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">
+                <i class="bi bi-cart-plus me-2"></i>
+                Novo Pedido
+            </h4>
+            <button
+                class="btn btn-outline-light"
+                (click)="cancel()">
+                <i class="bi bi-arrow-left-circle me-2"></i>
+                Voltar
+            </button>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row align-items-end">
+            <div class="col-md-7">
+                <label class="form-label">
+                    Produto
+                </label>
+                <select
+                    class="form-select"
+                    [(ngModel)]="selectedProductId">
+                    <option value="">
+                        Selecione...
+                    </option>
+                    <option
+                        *ngFor="let product of products"
+                        [value]="product.id">
+
+                        {{ product.name }}
+                        -
+                        Estoque: {{ product.stockQuantity }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label">
+                    Quantidade
+                </label>
+                <input
+                    type="number"
+                    class="form-control"
+                    [(ngModel)]="selectedQuantity">
+            </div>
+
+            <div class="col-md-3">
+                <button
+                    class="btn btn-primary w-100"
+                    (click)="addItem()">
+                    <i class="bi bi-plus-circle me-2"></i>
+                    Adicionar
+                </button>
+            </div>
+        </div>
+        <hr>
+
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Produto</th>
+                    <th width="120">
+                        Quantidade
+                    </th>
+                    <th width="140">
+                        Valor Unit.
+                    </th>
+                    <th width="140">
+                        Total
+                    </th>
+                    <th width="160">
+
+                        Ações
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="
+                        let item of items;
+                        trackBy: trackByProductId
+                    ">
+                    <td>
+                        {{ item.productName }}
+                    </td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            <button
+                                class="btn btn-outline-secondary"
+                                (click)="decreaseQuantity(item)">
+                                <i class="bi bi-dash"></i>
+                            </button>
+                            <input
+                                class="form-control text-center"
+                                [value]="item.quantity"
+                                readonly>
+                            <button
+                                class="btn btn-outline-secondary"
+                                (click)="increaseQuantity(item)">
+                                <i class="bi bi-plus"></i>
+                            </button>
+                        </div>
+                    </td>
+                    <td>
+                        {{ item.unitPrice | currency:'BRL' }}
+                    </td>
+                    <td>
+                        <strong>
+                            {{ item.totalPrice | currency:'BRL' }}
+                        </strong>
+                    </td>
+                    <td>
+                        <button
+                            class="btn btn-outline-danger btn-sm"
+                            (click)="removeItem(item.productId)">
+
+                            <i class="bi bi-trash"></i>
+
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="items.length === 0">
+                    <td
+                        colspan="5"
+                        class="text-center text-muted">
+
+                        Nenhum item adicionado.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div
+            class="row mt-4">
+            <div class="col text-end">
+                <h4>
+                    Total do Pedido
+                </h4>
+                <h2 class="text-success">
+                    {{ calculateTotal() | currency:'BRL' }}
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer text-end">
+        <button
+            class="btn btn-secondary me-2"
+            (click)="cancel()">
+            Cancelar
+        </button>
+        <button
+            class="btn btn-success"
+            [disabled]="isSaving"
+            (click)="save()">
+            <i class="bi bi-check-circle me-2"></i>
+            Confirmar Pedido
+        </button>
+    </div>
+    
+</div>

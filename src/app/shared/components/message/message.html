@@ -1,0 +1,34 @@
+<div class="message-container">
+  <div
+    *ngFor="let message of messageService.messages()"
+    class="alert alert-dismissible shadow message-item"
+    [ngClass]="alertClass(message)"
+    role="alert">
+
+    <div class="d-flex align-items-start">
+
+      <i
+        class="bi me-3 message-icon"
+        [ngClass]="iconClass(message)">
+      </i>
+
+      <div class="flex-grow-1">
+        <strong class="d-block">
+          {{ message.title }}
+        </strong>
+
+        <span>
+          {{ message.text }}
+        </span>
+      </div>
+
+      <button
+        type="button"
+        class="btn-close ms-3"
+        aria-label="Fechar"
+        (click)="close(message.id)">
+      </button>
+
+    </div>
+  </div>
+</div>

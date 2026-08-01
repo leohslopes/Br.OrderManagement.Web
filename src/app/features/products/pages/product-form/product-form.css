@@ -1,0 +1,43 @@
+.modal {
+    background: rgba(0,0,0,.45);
+}
+
+.image-container{
+    width:200px;
+    height:200px;
+    margin:auto;
+}
+
+.image-container img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.image-placeholder{
+    width:100%;
+    height:100%;
+    border:2px dashed #ced4da;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#adb5bd;
+    background:#f8f9fa;
+}
+
+.modal-body{
+    padding:30px;
+}
+
+.form-label{
+    font-weight:600;
+}
+
+.btn-primary{
+    min-width:120px;
+}
+
+.btn-secondary{
+    min-width:120px;
+}
